@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name = "viewport" content = "initial-scale = 1.0, maximum-scale = 1.0" />
+    <meta property="og:description" content="Easy way to browse /r/funny"/> 
+    <meta property="og:title" content="Mobile Reddit"/> 
+    <link rel="apple-touch-icon" href="http://pantel.is/r/home_icon.png" />   
+    <link rel="apple-touch-icon-precomposed" href="http://pantel.is/r/home_icon.png"/>
+    <meta property="og:image" content="http://pantel.is/r/qr.png" />
+    <meta property="og:url" content="http://pantel.is/r/" />
+    <title>/R/funny from Reddit</title>
+
+    <style>
+      body{
+        background:#333;
+        padding:0;
+        margin:0;
+        -webkit-user-select:none;
+        -moz-user-select:none;
+        -ms-user-select:none;
+        -o-user-select:none;
+        user-select:none;
+        -webkit-text-size-adjust:none;
+        -moz-text-size-adjust:none;
+        -ms-text-size-adjust:none;
+        -o-text-size-adjust:none;
+        text-size-adjust:none;
+        color:#eee;
+        font-family:helvetica, Arial;
+        font-size:12px;
+      }
+     #o{
+       height:1500px;
+       width:100%;
+       position:relative;
+      }
+      #appWindow{
+        width:100%;
+        min-width:320px;
+        height:100%;
+        position:absolute !important;
+        bottom: 0 !important;
+      }
+            
+      #swipeview-slider > div {
+        position:relative;
+        display:-webkit-box;
+        display:-moz-box;
+        display:-ms-box;
+        display:-o-box;
+        display:box;
+        -webkit-box-orient:vertical;
+        -moz-box-orient:vertical;
+        -ms-box-orient:vertical;
+        -o-box-orient:vertical;
+        box-orient:vertical;
+        -webkit-box-pack:center;
+        -moz-box-pack:center;
+        -ms-box-pack:center;
+        -o-box-pack:center;
+        box-pack:center;
+        -webkit-box-align:center;
+        -mox-box-align:center;
+        -ms-box-align:center;
+        -o-box-align:center;
+        box-align:center;
+        overflow:hidden;
+      }
+
+      #swipeview-slider img {
+        display:block;
+        border:3px solid #eee;
+        opacity:1;
+        pointer-events:none;
+        -webkit-transition: opacity .3s;
+        -moz-transition: opacity .3s;
+        transition: opacity .3s;
+      }
+
+      #swipeview-slider span {
+        position:absolute;
+        bottom:0;
+        left:0;
+        width:100%;
+        padding:8px 0;
+        display:block;
+        background:rgba(0,0,0,0.75);
+        font-size:15px;
+        text-align:center;
+        border-top:1px solid rgba(255,255,255,0.2);
+        -webkit-transition-duration:.3s;
+        -moz-transition-duration:.3s;
+        -ms-transition-duration:.3s;
+        -o-transition-duration:.3s;
+        transition-duration:.3s;
+        -webkit-transition-property:-webkit-transform;
+        -moz-transition-property:-moz-transform;
+        -ms-transition-property:-ms-transform;
+        -o-transition-property:-o-transform;
+        transition-property:transform;
+        -webkit-transform:translate(0,100%) translateZ(0);
+        -moz-transform:translate(0,100%) translateZ(0);
+        -ms-transform:translate(0,100%);
+        -ms-transform:translate(0,100%) translateZ(0);
+        -o-transform:translate(0,100%);
+        -o-transform:translate(0,100%) translateZ(0);
+        transform:translate(0,100%) translateZ(0);
+      }
+
+      #swipeview-slider .swipeview-active span {
+        -webkit-transform:translate(0,0) translateZ(0);
+        -moz-transform:translate(0,0) translateZ(0);
+        -ms-transform:translate(0,0);
+        -ms-transform:translate(0,0) translateZ(0);
+        -o-transform:translate(0,0);
+        -o-transform:translate(0,0) translateZ(0);
+        transform:translate(0,0) translateZ(0);
+      }
+
+      #appWindow .swipeview-loading img,
+      #swipeview-slider img.loading {
+        -webkit-transition-duration:0s;
+        opacity:0;
+      }
+
+      #swipeview-slider > div{
+        background:url(loader.png) no-repeat 50% 50%;
+      }
+      #appWindow > div > .swipeview-loading span {
+        -webkit-transition-duration:0s;
+        -moz-transition-duration:0s;
+        -ms-transition-duration:0s;
+        -o-transition-duration:0s;
+        transition-duration:0s;
+        -webkit-transform:translate(0,100%) translateZ(0);
+        -moz-transform:translate(0,100%) translateZ(0);
+        -ms-transform:translate(0,100%);
+        -ms-transform:translate(0,100%) translateZ(0);
+        -o-transform:translate(0,100%);
+        -o-transform:translate(0,100%) translateZ(0);
+        transform:translate(0,100%) translateZ(0);
+      }
+      
+      #appWindow img{
+        max-width:98%;
+        max-height:99%;
+        min-height:45%;
+        margin:0 auto;
+      }
+      #cl, #prevv, #nexxt{
+        position:absolute;
+        top:2px;
+        left:2px;
+        display:block;
+        color:#eee;
+        opacity:0.7;
+        text-decoration:none;
+        text-align:center;
+        padding:10px 15px;
+        background:#222;
+        z-index:9999;
+      }
+      #prevv{ left:91px; display:none; }
+      #nexxt{ left:133px; display:none; }
+    </style>
+  </head>
+  <body>
+    <div id="o">
+      <div id="appWindow">
+        <a href="javascript:clear()" id="cl">RECENT</a>
+        <a href="javascript:prev()" id="prevv"><</a>
+        <a href="javascript:next()" id="nexxt">></a>
+      </div>
+    </div>
+    
+    <script type="text/javascript" src="swipeview.js"></script>
+    <script type="text/javascript" src="api.js"></script>
+  </body>
+</html>
