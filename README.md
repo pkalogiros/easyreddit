@@ -1,0 +1,4 @@
+easyreddit
+==========
+
+Silly mini project
