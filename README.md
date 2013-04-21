@@ -1,6 +1,10 @@
 easyreddit
 ==========
 
+http://pantel.is/r
+![QR code](https://raw.github.com/pkalogiros/easyreddit/master/qr.png)
+
+
 Silly mini project made in a couple of hours.
 A mobile enabled app to view the feed (images) from /r/funny section of reddit.
 
