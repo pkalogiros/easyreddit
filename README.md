@@ -4,6 +4,7 @@ easyreddit
 http://pantel.is/r
 
 (or scan the qr code below)
+
 ![QR code](https://raw.github.com/pkalogiros/easyreddit/master/qr.png)
 
 
